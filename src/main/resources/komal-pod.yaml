@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kub-trainingPod
+  labels:
+    app: Trainingapi
+spec:
+  containers:
+  - name: trainingCtr
+    image: komaljain14/image-resolver-api
+    resources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+  
