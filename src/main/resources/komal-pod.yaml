@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: kub-trainingPod
+  name: kubtrainingpod
   labels:
-    app: Trainingapi
+    app: trainingapi
 spec:
   containers:
   - name: trainingCtr
