@@ -23,7 +23,7 @@ public class TestClient1 {
 	    public ResponseEntity<Map<String, String>> extractMainImage() {
 		 RestTemplate restTemplate = new RestTemplate();
 		 String msg = "Welcome ";
-		 msg = msg + restTemplate.getForEntity("http://localhost:8081/welcome", String.class).getBody();
+		 msg = msg + restTemplate.getForEntity("http://data-svc:8081/welcome", String.class).getBody();
 		 logger.info("Receiced response from ex2 {}",msg);
 		 Map<String, String> response = new HashMap<>();
 	     response.put("welcomemsg", msg);
