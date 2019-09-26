@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/umas")
@@ -19,13 +20,13 @@ public class TestClient1 {
 	private Logger logger = LoggerFactory.getLogger(TestClient1.class);
 
 	 @GetMapping
-	    public ResponseEntity<Map<String, String>> extractMainImage(@RequestParam("name") String name) {
-	       
-	                logger.info("Printing parameter.....");
-	                Map<String, String> response = new HashMap<>();
-	                response.put("resposnse", name);
-	                return ResponseEntity.ok(response);
-	           
-
+	    public ResponseEntity<Map<String, String>> extractMainImage() {
+		 RestTemplate restTemplate = new RestTemplate();
+		 String msg = "Welcome ";
+		 msg = msg + restTemplate.getForEntity("http://localhost:8081/welcome", String.class).getBody();
+		 logger.info("Receiced response from ex2 {}",msg);
+		 Map<String, String> response = new HashMap<>();
+	     response.put("welcomemsg", msg);
+	     return ResponseEntity.ok(response);
 }
 }
